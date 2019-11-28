@@ -119,12 +119,12 @@
 
         <td class=cp valign=top width=324 height=12>
             <span class="campo">
-                <?php echo $this->dados->getCedente()->getNomeCedente(); ?>
+                <?php echo $this->dados->getCedente()->getNomeCedente() . " - " . $this->dados->getCedente()->getDocumento(); ?>
             </span>
         </td>
         <td class=cp valign=top width=7 height=12>
             <img height=12
-                 src=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAATAQMAAABrxfVaAAAAA1BMVEUAAACnej3aAAAADElEQVR42mNgIAYAAAAmAAEy2MJFAAAAAElFTkSuQmCC
+                 src=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAATAQMAAABrxfVaAAAAA1BMVEUAAACnej3aAAAADElEQVR42mNgIAYAAAAmAAEy2MJFAAAAAElFTkSuQmCC 
                  width=1 border=0>
         </td>
 
@@ -580,7 +580,8 @@
                  width=1 border=0>
         </td>
         <td class=cp valign=top width=472 height=12>
-            Pagável em qualquer Banco
+            Pagável em qualquer Banco do Sistema de Compensação
+            <!--Até o vencimento pagável em qualquer banco. Após o vencimento, apenas nas agências do Banco Safra.-->
         </td>
         <td class=cp valign=top width=7 height=12>
             <img height=12
@@ -655,7 +656,7 @@
         </td>
         <td class=cp valign=top width=0 height=12>
                         <span class="campo">
-                            <?php echo $this->dados->getCedente()->getNomeCedente() ?>
+                            <?php echo $this->dados->getCedente()->getNomeCedente() . " - " . $this->dados->getCedente()->getDocumento() ?>
                         </span>
         </td>
         <td class=cp valign=top width=7 height=12>
@@ -1113,8 +1114,8 @@
                         </span>
             <br>
             <span class=ct style="font: bold 12px Arial;">
-                * Carteira vinculada, a quantidade de dias para protesto é automático, sendo padrão o prazo de 10 dias corridos, ou
-exista alguma negociação específica entre a empresa e o Banco, devidamente formalizada.
+                <!--* O não pagamento do título 10 dias após o vencimento implicará em protesto.-->
+                PROTESTAR APÓS 10 DIAS DO VENCIMENTO
                 <br>
                 <br>
                 <br>

@@ -93,8 +93,8 @@ class CaixaSigcb extends AbstractBoletoFactory
         $strCarteira = $this->getCedente()->getCarteira();
 
         $campoLivre = (
-            $this->getCedente()->getContaCedente() .
-            $this->getCedente()->getContaCedenteDv() .
+            substr($this->getCedente()->getContaCedente(), 0, 6) .
+            substr($this->getCedente()->getContaCedenteDv(), 0, 1) .
             $arrNossoNumeroProcessado[1] .
             ($strCarteira[0] ? $strCarteira[0] : '2') .
             $arrNossoNumeroProcessado[2] .
@@ -105,8 +105,8 @@ class CaixaSigcb extends AbstractBoletoFactory
         $campoLivreDv = Util::modulo11($campoLivre);
 
         $DV = Util::digitoVerificadorBarra(
-            $this->getBanco()->getCodigoBanco()
-            . $this->getBanco()->getMoeda()
+            substr($this->getBanco()->getCodigoBanco(), 0, 3)
+            . substr($this->getBanco()->getMoeda(), 0, 1)
             . $fatorVencimento
             . $valorProcessado
             . $campoLivre
@@ -116,8 +116,8 @@ class CaixaSigcb extends AbstractBoletoFactory
         /**
          * Compondo a linha base para formação da Linha Digitável e do Código de Barras
          */
-        $strLinha = $this->getBanco()->getCodigoBanco()
-            . $this->getBanco()->getMoeda()
+        $strLinha = substr($this->getBanco()->getCodigoBanco(), 0, 3)
+            . substr($this->getBanco()->getMoeda(), 0, 1)
             . $DV
             . $fatorVencimento
             . $valorProcessado

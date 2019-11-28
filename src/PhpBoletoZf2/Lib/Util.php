@@ -318,4 +318,63 @@ abstract class Util
         return $campo1 . ' ' . $campo2 . ' ' . $campo3 . ' ' . $campo4 . ' ' . $campo5;
     }
 
+
+    public static function calculoDac($num, $base = 9)
+    {
+        $soma = 0;
+        $fator = 2;
+
+        for ($i = strlen($num); $i > 0; $i--) {
+            $numeros[$i] = substr($num, $i - 1, 1);
+            $parcial[$i] = $numeros[$i] * $fator;
+            $soma += $parcial[$i];
+
+            if ($fator == $base) {
+                $fator = 1;
+            }
+            $fator++;
+        }
+
+        $sobra = $soma % 11;
+
+        if ($sobra == 0 || $sobra == 1 || $sobra == 10){
+            return 1;
+        }
+
+        return (11 - $sobra);
+
+    }
+
+    public static function calculoDVSafra($num)
+    {
+        $fator = 2;
+
+        for ($i = strlen($num); $i > 0; $i--) {
+            $numeros[$i] = substr($num, $i - 1, 1);
+            $parcial[$i] = $numeros[$i] * $fator;
+
+            //se o número for maior que 9 deve somar as casas seperadamente
+            if ($parcial[$i] > 0){
+                $parcial[$i] = substr($parcial[$i], 0, 1) + substr($parcial[$i], 1, 1);
+            }
+
+            $soma += $parcial[$i];
+
+            if ($fator == 1) {
+                $fator = 3;
+            }
+            $fator--;
+        }
+
+        $dv = $soma % 10;
+
+        if($dv==0){
+            return 0;
+        }
+
+        $dv = 10 - $dv;
+
+        return $dv;
+    }
+
 }
