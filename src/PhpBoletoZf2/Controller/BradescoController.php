@@ -22,7 +22,7 @@ namespace PhpBoletoZf2\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-use DOMPDFModule\View\Model\PdfModel;
+use DompdfModule\View\Model\PdfModel;
 use PhpBoletoZf2\Model\BoletoBradesco;
 use PhpBoletoZf2\Model\Banco;
 use PhpBoletoZf2\Model\Sacado;

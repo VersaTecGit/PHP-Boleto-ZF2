@@ -105,8 +105,8 @@ class CaixaSigcb extends AbstractBoletoFactory
         $campoLivreDv = Util::modulo11($campoLivre);
 
         $DV = Util::digitoVerificadorBarra(
-            $this->getBanco()->getCodigoBanco()
-            . $this->getBanco()->getMoeda()
+            substr($this->getBanco()->getCodigoBanco(), 0, 3)
+            . substr($this->getBanco()->getMoeda(), 0, 1)
             . $fatorVencimento
             . $valorProcessado
             . $campoLivre
@@ -116,8 +116,8 @@ class CaixaSigcb extends AbstractBoletoFactory
         /**
          * Compondo a linha base para formação da Linha Digitável e do Código de Barras
          */
-        $strLinha = $this->getBanco()->getCodigoBanco()
-            . $this->getBanco()->getMoeda()
+        $strLinha = substr($this->getBanco()->getCodigoBanco(), 0, 3)
+            . substr($this->getBanco()->getMoeda(), 0, 1)
             . $DV
             . $fatorVencimento
             . $valorProcessado
