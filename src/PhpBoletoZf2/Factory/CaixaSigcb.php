@@ -84,7 +84,7 @@ class CaixaSigcb extends AbstractBoletoFactory
         /**
          * Calcula o dígito verificador do código de barras
          */
-        $contaCedenteDv = Util::digitoVerificadorNossoNumero($this->getCedente()->getContaCedente());
+        $contaCedenteDv = Util::digitoVerificadorNossoNumero(str_pad(($this->getCedente()->getContaCedente()*1),6,0,STR_PAD_LEFT));
         $contaCedenteDv = $contaCedenteDv == "P" ? "0" : $contaCedenteDv;
         $this->getCedente()->setContaCedenteDv($contaCedenteDv);
 
@@ -93,8 +93,8 @@ class CaixaSigcb extends AbstractBoletoFactory
         $strCarteira = $this->getCedente()->getCarteira();
 
         $campoLivre = (
-            substr($this->getCedente()->getContaCedente(), 0, 6) .
-            substr($this->getCedente()->getContaCedenteDv(), 0, 1) .
+            str_pad(($this->getCedente()->getContaCedente()*1),6,0,STR_PAD_LEFT) .
+            $this->getCedente()->getContaCedenteDv() .
             $arrNossoNumeroProcessado[1] .
             ($strCarteira[0] ? $strCarteira[0] : '2') .
             $arrNossoNumeroProcessado[2] .
@@ -137,12 +137,12 @@ class CaixaSigcb extends AbstractBoletoFactory
         /**
          * Formatando os dados bancários do cedente para impressão
          */
-        $contaCedenteDv = Util::modulo11($this->getCedente()->getContaCedente(), 9);
+        $contaCedenteDv = Util::modulo11(str_pad(($this->getCedente()->getContaCedente()*1),6,0,STR_PAD_LEFT), 9);
         $contaCedenteDv = $contaCedenteDv > 9 || $contaCedenteDv == "P" ? 0 : $contaCedenteDv;
 
         $agenciaCodigo = (
             $this->getCedente()->getAgencia() . ' / ' .
-            $this->getCedente()->getContaCedente() . '-' . $contaCedenteDv
+            str_pad(($this->getCedente()->getContaCedente()*1),6,0,STR_PAD_LEFT) . '-' . $contaCedenteDv
         );
  
         $this->getCedente()->setAgenciaCodigo($agenciaCodigo);
@@ -150,8 +150,8 @@ class CaixaSigcb extends AbstractBoletoFactory
         /**
          * Iniciando opções para criação do Código de Barras
          */
-        $barcodeOptions = array('text' => $strLinha);
 
+        $barcodeOptions = array('text' => $strLinha);
         /**
          * Criando o código de barras em uma imagem e retornando seu base64
          */
