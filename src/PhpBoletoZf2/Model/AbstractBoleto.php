@@ -20,7 +20,7 @@
 
 namespace PhpBoletoZf2\Model;
 
-use Zend\Stdlib\Hydrator\ClassMethods;
+use Zend\Hydrator\ClassMethods;
 use PhpBoletoZf2\Lib\LinhaDigitavel\ImageText;
 
 abstract class AbstractBoleto implements BoletoInterface

@@ -21,7 +21,7 @@
 
  namespace PhpBoletoZf2\Factory;
 
- use Zend\Stdlib\Hydrator\ClassMethods;
+ use Zend\Hydrator\ClassMethods;
  use Zend\Barcode\Barcode;
  use PhpBoletoZf2\Factory\AbstractBoletoFactory;
  use PhpBoletoZf2\Lib\Util;

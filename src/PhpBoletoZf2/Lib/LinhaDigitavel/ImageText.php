@@ -20,7 +20,7 @@
 
 namespace PhpBoletoZf2\Lib\LinhaDigitavel;
 
-use Zend\Stdlib\Hydrator\ClassMethods;
+use Zend\Hydrator\ClassMethods;
 
 class ImageText
 {
