@@ -167,7 +167,7 @@ class Safra extends
          * Criando o código de barras em uma imagem e retornando seu base64
          */
         $codigoDeBarras = Barcode::factory(
-            'Code25interleaved',
+            'code25interleaved',
             'PhpBoletoZf2\Lib\Barcode\Renderer\Base64',
             $barcodeOptions,
             array()

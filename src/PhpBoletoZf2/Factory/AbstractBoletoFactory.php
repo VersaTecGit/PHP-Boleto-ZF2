@@ -1,44 +1,45 @@
 <?php
 
 /**
- * PHP Boleto ZF2 - Versão Beta 
- * 
+ * PHP Boleto ZF2 - Versão Beta
+ *
  * Este arquivo está disponível sob a Licença GPL disponível pela Web
- * em http://pt.wikipedia.org/wiki/GNU_General_Public_License 
+ * em http://pt.wikipedia.org/wiki/GNU_General_Public_License
  * Você deve ter recebido uma cópia da GNU Public License junto com
- * este pacote; se não, escreva para: 
- * 
+ * este pacote; se não, escreva para:
+ *
  * Free Software Foundation, Inc.
  * 59 Temple Place - Suite 330
  * Boston, MA 02111-1307, USA.
- * 
- * Originado do Projeto BoletoPhp: http://www.boletophp.com.br 
- * 
+ *
+ * Originado do Projeto BoletoPhp: http://www.boletophp.com.br
+ *
  * Adaptação ao Zend Framework 2: João G. Zanon Jr. <jot@jot.com.br>
- * 
+ *
  */
 
 namespace PhpBoletoZf2\Factory;
 
-use Zend\ServiceManager\FactoryInterface;
+use Interop\Container\ContainerInterface;
+use Zend\ServiceManager\Factory\FactoryInterface;
 use PhpBoletoZf2\Model\Cedente;
 use PhpBoletoZf2\Model\Banco;
 
 abstract class AbstractBoletoFactory implements FactoryInterface
 {
-    
+
     /**
      * @var array dados do arquivo de configurção
      */
     protected $config;
 
     /**
-     * @var string 
+     * @var string
      */
     protected $codigoBanco;
 
     /**
-     * @var \PhpBoletoZf2\Model\Cedente 
+     * @var \PhpBoletoZf2\Model\Cedente
      */
     protected $cedente;
 
@@ -58,13 +59,13 @@ abstract class AbstractBoletoFactory implements FactoryInterface
      */
     protected $sacado;
 
-    public function createService(\Zend\ServiceManager\ServiceLocatorInterface $serviceLocator)
+    public function __invoke(ContainerInterface $container = null, $requestedName = "", array $options = null)
     {
 
         /**
          * Buscando o arquivo de configuração
          */
-        $this->config = $serviceLocator->get('config');
+        $this->config = $container ? $container->get('config') : array();
 
         /**
          * Pré-instancia o banco
