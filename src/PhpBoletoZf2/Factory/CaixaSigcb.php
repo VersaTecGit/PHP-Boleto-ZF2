@@ -93,9 +93,8 @@ class CaixaSigcb extends AbstractBoletoFactory
         $strCarteira = $this->getCedente()->getCarteira();
 
         $campoLivre = (
-            str_pad(($this->getCedente()->getContaCedente()*1),6,0,STR_PAD_LEFT) .
-            $this->getCedente()->getContaCedenteDv() .
-            $arrNossoNumeroProcessado[1] .
+            str_pad(($this->getCedente()->getContaCedente()*1),7,0,STR_PAD_LEFT) .
+            str_pad(($arrNossoNumeroProcessado[1]),3,0,STR_PAD_LEFT) .
             ($strCarteira[0] ? $strCarteira[0] : '2') .
             $arrNossoNumeroProcessado[2] .
             ($strCarteira[1] ? $strCarteira[1] : '4') .
