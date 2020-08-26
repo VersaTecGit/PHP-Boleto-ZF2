@@ -92,9 +92,11 @@ class CaixaSigcb extends AbstractBoletoFactory
         preg_match('/(\d{3})(\d{3})(\d{9})/', $strNossoNumeroProcessado, $arrNossoNumeroProcessado);
         $strCarteira = $this->getCedente()->getCarteira();
 
+        $qntdZero = $this->getCedente()->getContaCedenteDv() > 0 ? 6 : 7;
         $campoLivre = (
-            str_pad(($this->getCedente()->getContaCedente()*1),7,0,STR_PAD_LEFT) .
-            str_pad(($arrNossoNumeroProcessado[1]),3,0,STR_PAD_LEFT) .
+            str_pad(($this->getCedente()->getContaCedente() * 1), $qntdZero, 0, STR_PAD_LEFT) .
+            ($this->getCedente()->getContaCedenteDv() > 0 ? $this->getCedente()->getContaCedenteDv() : "") .
+            str_pad(($arrNossoNumeroProcessado[1]), 3, 0, STR_PAD_LEFT) .
             ($strCarteira[0] ? $strCarteira[0] : '2') .
             $arrNossoNumeroProcessado[2] .
             ($strCarteira[1] ? $strCarteira[1] : '4') .
