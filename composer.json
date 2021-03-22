@@ -17,7 +17,7 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "versatecnologia/dompdf-module": "dev-master"
+        "dino/dompdf-module": "dev-master"
     },
     "autoload": {
         "psr-0": {
